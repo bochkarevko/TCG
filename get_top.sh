@@ -1,2 +1,4 @@
 #!/bin/bash
-git shortlog -s -n | head -n 50 | sed -e 's;[0-9]\+;;' -e 's;^[ \t]*;;' > t50c.txt
+folder_name=$(basename "$PWD")
+cd ..
+git shortlog -s -n | head -n "$1" | sed -e 's;[0-9]\+;;' -e 's;^[ \t]*;;' > "$folder_name/data/contributors_$1.txt"
