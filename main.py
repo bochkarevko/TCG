@@ -1,4 +1,5 @@
 import argparse
+from graphviz import Graph
 from itertools import combinations 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -18,6 +19,19 @@ def parse(N:int=10):
     return contributors_list
 
 def plot_graph(contributors):
+    g = Graph('G', body = ['rankdir=LR;'], filename='graph.gv', engine='sfdp')
+
+    pairs = list(combinations(contributors, 2))
+    for contributor1, contributor2 in pairs:
+        cmd = ["comm", "-123", "--total", f"data/{contributor1}.txt", f"data/{contributor2}.txt"]
+        shared_changed = subprocess.run(cmd, stdout=subprocess.PIPE)
+        count = shared_changed.stdout.decode('utf-8').split()[2]
+        if int(count) > 0:
+            g.edge(contributor1, contributor2, len=count, label=count)
+    print(g.source)
+    g.view()
+
+def plot_graph_nx(contributors):
     G = nx.Graph()
     labels = {}
     for contributor in contributors:
