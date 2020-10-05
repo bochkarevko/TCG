@@ -1,9 +1,9 @@
 import argparse
 from graphviz import Graph
 from itertools import combinations 
-import matplotlib.pyplot as plt
-import networkx as nx
 import subprocess
+import numpy as np
+import logging
 
 def get_data(N:int=10):
     cmd = ["./get_top.sh", str(N)]
@@ -19,16 +19,31 @@ def parse(N:int=10):
     return contributors_list
 
 def plot_graph(contributors):
-    g = Graph('G', body = ['rankdir=LR;'], filename='graph.gv', engine='sfdp')
+    g = Graph(f'Top {len(contributors)} contributors', filename='graph.gv', engine='neato')
+    g.attr(rankdir='LR')
 
     pairs = list(combinations(contributors, 2))
-    for contributor1, contributor2 in pairs:
+    counts = np.zeros(len(pairs), dtype=int)
+    for i, (contributor1, contributor2) in enumerate(pairs):
         cmd = ["comm", "-123", "--total", f"data/{contributor1}.txt", f"data/{contributor2}.txt"]
         shared_changed = subprocess.run(cmd, stdout=subprocess.PIPE)
-        count = shared_changed.stdout.decode('utf-8').split()[2]
-        if int(count) > 0:
-            g.edge(contributor1, contributor2, len=count, label=count)
-    print(g.source)
+        count = int(shared_changed.stdout.decode('utf-8').split()[2])
+        counts[i] = count
+
+    top_25 = np.percentile(counts, 75)
+    logging.debug(f"N contributions for top 25%: {top_25}")
+
+    lens = (np.max(counts) - counts + np.min(counts)) / np.max(counts) * 10 # some edge gets 0 length - not good
+    for i, (contributor1, contributor2) in enumerate(pairs):
+        if counts[i] > 0:
+            if counts[i] > top_25:
+                color = 'red'
+            else:
+                color = 'black'
+            g.edge(contributor1, contributor2, len=str(lens[i]), 
+                   label=str(counts[i]), color=color)
+
+    logging.debug(g.source)
     g.view()
 
 def plot_graph_nx(contributors):
@@ -65,7 +80,11 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--number", type=int, default=10,
                         help="How many contributors to get")
+    parser.add_argument("--verbose", help="debug log level",
+                        action="store_true")
     args = parser.parse_args()
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
     get_data(args.number)
     contributors_list = parse(args.number)
     plot_graph(contributors_list)
