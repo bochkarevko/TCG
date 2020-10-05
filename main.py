@@ -6,10 +6,10 @@ import numpy as np
 import logging
 
 def get_data(N:int=10):
-    logging.info(f"Getting top {10} contributors")
+    logging.info(f"Getting top {N} contributors")
     cmd = ["./get_top.sh", str(N)]
     subprocess.Popen(cmd).wait()
-    logging.info(f"Getting all files changed by top {10} contributors")
+    logging.info(f"Getting all files changed by top {N} contributors")
     cmd = ["./all_files.sh", str(N)]
     subprocess.Popen(cmd).wait()
 
@@ -38,8 +38,10 @@ def plot_graph(contributors):
         count = int(shared_changed.stdout.decode('utf-8').split()[2])
         counts[i] = count
 
-    top_25 = np.percentile(counts, 75)
+    top_25 = np.percentile(counts[counts > 0], 75)
+    bot_25 = np.percentile(counts[counts > 0], 25)
     logging.debug(f"N contributions for top 25%: {top_25}")
+    logging.debug(f"N contributions for bot 25%: {bot_25}")
 
     lens = count_to_len(counts, Max=len(contributors))
     for i, (contributor1, contributor2) in enumerate(pairs):
