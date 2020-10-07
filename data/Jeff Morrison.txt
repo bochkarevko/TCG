@@ -1,0 +1,26 @@
+Merge: 0617696ae 60d7a02d4
+Merge: 38491c7c9 c16b5659a
+Merge: 3ce2cd04e 280ff2e5a
+Merge: 4f57515f9 f0fdabae7
+Merge: 5512d0d4d 332a782d2
+Merge: 63b58cf6b d83fe785c
+Merge: 7fa656dae 4ed9e22a4
+Merge: 832d9de03 f69112cb3
+Merge: 89d4d352e a4d679670
+Merge: 9ba014fbf f66f8f031
+Merge: 9f9c8bceb aa70419f9
+Merge: bb4788e99 510ced1d1
+Merge: c8833daf5 f3271ad53
+Merge: ce0eec97d a39b8fda7
+Merge: f9ad17db6 aa044c6b6
+src/core/ReactMount.js
+src/core/__tests__/ReactComponentLifeCycle-test.js
+src/core/__tests__/ReactCompositeComponent-test.js
+src/core/__tests__/ReactEventEmitter-test.js
+src/core/__tests__/ReactIdentity-test.js
+src/core/__tests__/ReactMount-test.js
+src/core/__tests__/ReactMultiChildText-test.js
+src/core/__tests__/refs-destruction-test.js
+src/core/__tests__/refs-test.js
+src/dom/components/__tests__/ReactDOMInput-test.js
+src/vendor/core/$.js

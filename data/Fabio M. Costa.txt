@@ -1,0 +1,8 @@
+docs/docs/07-working-with-the-browser.md
+docs/docs/ref-02-component-api.md
+docs/index.md
+src/browser/ui/dom/ViewportMetrics.js
+src/browser/ui/ReactEventListener.js
+src/test/ReactPerf.js
+src/vendor/stubs/EventListener.js
+vendor/browser-transforms.js

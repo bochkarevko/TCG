@@ -1,0 +1,25 @@
+docs/_config.yml
+docs/docs/api.md
+docs/docs/syntax.md
+docs/feed.xml
+docs/index.md
+docs/_js/examples/timer.js
+docs/_layouts/default.html
+.gitignore
+Merge: 0487cc8de 99088b38d
+Merge: 27eb172a2 eaae75991
+Merge: 99c577e21 9b399968e
+packages/react-reconciler/src/ReactFiberWorkLoop.js
+src/core/ReactCompositeComponent.js
+src/core/React.js
+src/core/__tests__/ReactCompositeComponent-test.js
+src/utils/cloneWithProps.js
+src/utils/ReactChildren.js
+src/utils/__tests__/cloneWithProps-test.js
+src/utils/__tests__/mergeFuncs-test.js
+src/utils/__tests__/ReactChildren-test.js
+src/vendor/core/mergeDeepInto.js
+src/vendor/core/mergeDeep.js
+src/vendor/core/mergeHelpers.js
+src/vendor/core/mergeInto.js
+src/vendor/core/merge.js

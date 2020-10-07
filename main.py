@@ -14,6 +14,7 @@ def get_data(N:int=10):
     subprocess.Popen(cmd).wait()
 
 def parse(N:int=10):
+    logging.info(f"Getting contributors to python")
     contributors_list = []
     with open(f"data/contributors_{N}.txt", "r") as file:
         for line in file:
@@ -24,7 +25,7 @@ def count_to_len(X:np.array, Max:int=10, Min:int=2):
     """interpolate lineary [min, max] -> [Max, 2] (min -> Max, max -> Min)"""
     return np.interp(X, (X.min(), X.max()), (Max, Min))
 
-def plot_graph(contributors):
+def plot_graph(contributors, filter=False):
     logging.info(f"Preparing graph")
     g = Graph(f'Top {len(contributors)} contributors', 
               filename=f'graph_{len(contributors)}.gv', engine='neato')
@@ -62,12 +63,16 @@ if __name__=='__main__':
                         help="How many contributors to get")
     parser.add_argument("--verbose", help="debug log level",
                         action="store_true")
+    parser.add_argument("-d", "--dry", help="do not download data \
+                        (it should already be in /data/ folder)",
+                        default=False, action="store_true")
     args = parser.parse_args()
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
     if args.number > 60:
         logging.warning("N too large, sorry")
         exit()
-    get_data(args.number)
+    if not args.dry:
+        get_data(args.number)
     contributors_list = parse(args.number)
     plot_graph(contributors_list)

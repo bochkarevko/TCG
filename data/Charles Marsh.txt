@@ -1,0 +1,9 @@
+docs/_config.yml
+docs/docs/ref-05-events.md
+src/browser/eventPlugins/SimpleEventPlugin.js
+src/browser/__tests__/ReactBrowserEventEmitter-test.js
+src/core/ReactCompositeComponent.js
+src/core/__tests__/ReactCompositeComponent-test.js
+src/renderers/dom/client/ReactMount.js
+src/renderers/dom/client/__tests__/ReactMountDestruction-test.js
+src/renderers/dom/client/__tests__/ReactMount-test.js

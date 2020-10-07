@@ -1,0 +1,23 @@
+Merge: 3144485cb 6b46e80bb
+Merge: 9d6b119c3 47b147f39
+Merge: c253c786a bf7826c68
+Merge: ce5346f2c de54d8405
+src/browser/eventPlugins/BeforeInputEventPlugin.js
+src/browser/eventPlugins/CompositionEventPlugin.js
+src/browser/eventPlugins/DefaultEventPluginOrder.js
+src/browser/eventPlugins/FallbackCompositionState.js
+src/browser/eventPlugins/SelectEventPlugin.js
+src/browser/eventPlugins/__tests__/FallbackCompositionState-test.js
+src/browser/eventPlugins/__tests__/SelectEventPlugin-test.js
+src/browser/ReactEventEmitter.js
+src/browser/syntheticEvents/SyntheticInputEvent.js
+src/browser/ui/ReactDefaultInjection.js
+src/browser/ui/ReactDOMSelection.js
+src/core/ReactEventEmitter.js
+src/event/EventConstants.js
+src/eventPlugins/CompositionEventPlugin.js
+src/eventPlugins/SelectEventPlugin.js
+src/eventPlugins/SimpleEventPlugin.js
+src/event/synthetic/SyntheticClipboardEvent.js
+src/renderers/dom/client/eventPlugins/SelectEventPlugin.js
+src/test/ReactDefaultPerf.js
