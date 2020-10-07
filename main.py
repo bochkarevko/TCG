@@ -33,10 +33,13 @@ def plot_graph(contributors, filter=False):
     pairs = list(combinations(contributors, 2))
     counts = np.zeros(len(pairs), dtype=int)
     for i, (contributor1, contributor2) in enumerate(pairs):
-        cmd = ["comm", "-123", "--total", 
+        cmd = ["comm", "-12",
             f"data/{contributor1}.txt", f"data/{contributor2}.txt"]
-        shared_changed = subprocess.run(cmd, stdout=subprocess.PIPE)
-        count = int(shared_changed.stdout.decode('utf-8').split()[2])
+        p1 = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        shared_changed = subprocess.run(["wc", "-l"], stdin=p1.stdout, 
+                                        stdout=subprocess.PIPE)
+        logging.debug(shared_changed)
+        count = int(shared_changed.stdout.decode('utf-8'))
         counts[i] = count
 
     top_25 = np.percentile(counts[counts > 0], 75)
