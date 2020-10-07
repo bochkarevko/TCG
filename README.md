@@ -13,7 +13,7 @@ To build TopN git contributors graph of a repo, clone this repo inside the repo 
 $ cd /your_repo/
 $ git clone *this_repo*
 $ cd /TCG/
-$ python main.py [-n N_contributors] [--verbose]
+$ python main.py [-n N_contributors] [--dry] [--verbose]
 ```
 As a result, a graph will be shown. This graph will be saved as .gv and .pdf in the /TCG/ folder.
 
