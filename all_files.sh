@@ -1,2 +1,2 @@
 #!/bin/bash
-xargs -n 1 -d '\n' ./contributor_files.sh <data/contributors_$1.txt
+tr '\n' '\0' <data/contributors_$1.txt | xargs -n 1 -0 ./contributor_files.sh 
