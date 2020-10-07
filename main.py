@@ -38,7 +38,6 @@ def plot_graph(contributors, filter=False):
         p1 = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         shared_changed = subprocess.run(["wc", "-l"], stdin=p1.stdout, 
                                         stdout=subprocess.PIPE)
-        logging.debug(shared_changed)
         count = int(shared_changed.stdout.decode('utf-8'))
         counts[i] = count
 
